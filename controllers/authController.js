@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const authenticateUser = require("../middleware/authMiddleware");
 const authService = require("../services/authService");
 
 router.post("/register", async (req, res) => {
@@ -21,6 +22,10 @@ router.post("/login", async (req, res) => {
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
+});
+
+router.get("/profile", authenticateUser, (req, res) => {
+    res.json({ message: "Welcome to your profile!", user: req.user });
 });
 
 module.exports = router;
