@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const userRepository = require("../repositories/userRepository");
 
-const registerUser = async (username, findUserByEmail, password) => {
+const registerUser = async (username, email, password) => {
     const existingUser = await userRepository.findUserByEmail(email);
     if(existingUser) throw new Error("User already exists");
 

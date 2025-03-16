@@ -4,6 +4,7 @@ const authService = require("../services/authService");
 
 router.post("/register", async (req, res) => {
     try {
+        console.log("Incoming request body:", req.body);
         const {username, email, password } = req.body;
         const user = await authService.registerUser(username, email, password);
         res.status(201).json({ message: "User registered", user });
